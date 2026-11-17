@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Updraft — Interview prep, in motion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="brandmark">u.</span>
+      <span>updraft<span class="brand-dot">.</span></span>
+    </a>
+
+    <div class="side-label">YOUR WORKSPACE</div>
+    <nav>
+      <a class="nav-item active" href="index.html"><span>◫</span> Overview</a>
+      <a class="nav-item" href="pages/assessment.html"><span>◉</span> Skill assessment</a>
+      <a class="nav-item" href="pages/plan.html"><span>▦</span> Prep plan <i>3</i></a>
+      <a class="nav-item" href="pages/practice.html"><span>⌁</span> Practice arena</a>
+      <a class="nav-item" href="pages/mock-interview.html"><span>◎</span> Mock interview</a>
+      <a class="nav-item" href="pages/reports.html"><span>↗</span> Progress reports</a>
+    </nav>
+
+    <div class="side-bottom">
+      <div class="streak-card">
+        <span class="streak-flame">✳</span>
+        <div>
+          <b>7 day streak</b>
+          <small>You're building momentum</small>
+        </div>
+        <span class="streak-num">07</span>
+      </div>
+
+      <div class="user-row">
+        <div class="avatar">AK</div>
+        <div>
+          <b>Alex Kim</b>
+          <small>Software engineer</small>
+        </div>
+        <span class="more">···</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="breadcrumbs">Workspace <span>/</span> Overview</div>
+      <div class="top-actions">
+        <span class="today" id="today"></span>
+        <button class="icon-btn" aria-label="Notifications">♧<i class="notification-dot"></i></button>
+        <button class="avatar mini" aria-label="User profile">AK</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <section class="welcome-row">
+        <div>
+          <div class="eyebrow"><span class="live-dot"></span> YOUR PREP, PERSONALIZED</div>
+          <h1>Make your next move<br>feel like <em>second nature.</em></h1>
+          <p class="subhead">A little progress today. A lot more confidence in the room.</p>
+        </div>
+        <button class="primary-btn" onclick="location.href='pages/assessment.html'">
+          <span>＋</span> Start a focus session <b>↗</b>
+        </button>
+      </section>
+
+      <section class="hero-grid">
+        <div class="readiness-card">
+          <div class="card-top">
+            <div>
+              <div class="eyebrow muted">INTERVIEW READINESS</div>
+              <h2>You're finding your rhythm.</h2>
+            </div>
+            <button class="dots" aria-label="More options">···</button>
+          </div>
+
+          <div class="readiness-body">
+            <div class="ring" style="--progress:68">
+              <div class="ring-inner">
+                <strong>68<span>%</span></strong>
+                <small>READY</small>
+              </div>
+            </div>
+
+            <div class="readiness-copy">
+              <div class="delta">↗ 12 pts <span>this month</span></div>
+              <p>Your foundations are solid. Sharpen <b>system design</b> and you're on track for your target role.</p>
+              <div class="mini-tags">
+                <span>Based on 24 sessions</span>
+                <span>Updated today</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="readiness-foot">
+            <span>Readiness trajectory</span>
+            <div class="sparkline">
+              <svg viewBox="0 0 300 48" preserveAspectRatio="none" aria-label="Readiness has trended upward">
+                <path d="M0 40 C20 37 25 42 45 33 S70 36 90 25 S120 32 140 18 S170 27 190 16 S220 23 240 9 S270 15 300 3"
+                  fill="none" stroke="#b8ef67" stroke-width="3"/>
+                <path d="M0 40 C20 37 25 42 45 33 S70 36 90 25 S120 32 140 18 S170 27 190 16 S220 23 240 9 S270 15 300 3 L300 48 L0 48Z"
+                  fill="url(#fade)"/>
+                <defs>
+                  <linearGradient id="fade" x1="0" x2="0" y1="0" y2="1">
+                    <stop stop-color="#b8ef67" stop-opacity=".22"/>
+                    <stop offset="1" stop-color="#b8ef67" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="ticks"><span>W1</span><span>W2</span><span>W3</span><span>W4</span></div>
+          </div>
+        </div>
+
+        <div class="focus-card">
+          <div class="card-top">
+            <div>
+              <div class="eyebrow">YOUR NEXT BEST MOVE</div>
+              <h2>Close the gap</h2>
+            </div>
+            <span class="spark-icon">✳</span>
+          </div>
+
+          <div class="focus-topic">
+            <div class="topic-icon">⌘</div>
+            <div>
+              <b>System design</b>
+              <small>Highest impact · 4 sessions</small>
+            </div>
+            <span class="topic-score">42%</span>
+          </div>
+
+          <div class="focus-progress"><span style="width:42%"></span></div>
+          <div class="focus-hint"><span>✦</span> 25 minutes here could lift your readiness by <b>8 points</b></div>
+          <button class="dark-btn" onclick="location.href='pages/plan.html'">
+            Pick up where you left off <span>→</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="section-heading">
+        <div>
+          <div class="eyebrow muted">YOUR MOMENTUM</div>
+          <h2>Small reps. Real progress.</h2>
+        </div>
+        <a href="pages/reports.html" class="text-link">Full report <span>↗</span></a>
+      </section>
+
+      <section class="stat-grid">
+        <article class="stat-card">
+          <div class="stat-icon violet">⌁</div>
+          <span class="stat-label">PRACTICE SESSIONS</span>
+          <div class="stat-value">24 <small>sessions</small></div>
+          <div class="stat-foot">
+            <span class="positive">↑ 6</span> vs. last month
+            <div class="bars">
+              <i style="height:25%"></i><i style="height:45%"></i><i style="height:37%"></i>
+              <i style="height:65%"></i><i style="height:52%"></i><i style="height:82%"></i><i style="height:100%"></i>
+            </div>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon lime">✓</div>
+          <span class="stat-label">QUIZ ACCURACY</span>
+          <div class="stat-value">81<small>%</small></div>
+          <div class="stat-foot">
+            <span class="positive">↑ 9%</span> vs. last month
+            <div class="micro-line">▁▂▂▃▂▄▅▅▆▇</div>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon coral">◷</div>
+          <span class="stat-label">FOCUSED TIME</span>
+          <div class="stat-value">6.4 <small>hrs</small></div>
+          <div class="stat-foot">
+            <span class="positive">↑ 1.2h</span> this week
+            <div class="micro-line coral-line">▁▃▂▄▃▅▆▇</div>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon blue">✧</div>
+          <span class="stat-label">PLAN COMPLETION</span>
+          <div class="stat-value">12<small>/18</small></div>
+          <div class="stat-foot">
+            <span class="positive">On pace</span> for your timeline
+            <div class="tiny-progress"><i></i></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="lower-grid">
+        <div class="week-card">
+          <div class="card-top">
+            <div>
+              <div class="eyebrow muted">THIS WEEK</div>
+              <h2>Your prep rhythm</h2>
+            </div>
+            <button class="select-pill">This week⌄</button>
+          </div>
+
+          <div class="week-meta">
+            <span><b>4.2h</b> focused</span>
+            <span><b>5</b> sessions</span>
+            <span><b>2</b> day streak</span>
+          </div>
+
+          <div class="chart">
+            <div class="y-labels"><span>2h</span><span>1h</span><span>0</span></div>
+            <div class="chart-area">
+              <div class="gridline g1"></div><div class="gridline g2"></div><div class="gridline g3"></div>
+              <div class="bar-group"><i style="height:38%"></i><i class="soft" style="height:18%"></i></div>
+              <div class="bar-group"><i style="height:65%"></i><i class="soft" style="height:28%"></i></div>
+              <div class="bar-group"><i style="height:45%"></i><i class="soft" style="height:42%"></i></div>
+              <div class="bar-group"><i style="height:85%"></i><i class="soft" style="height:33%"></i></div>
+              <div class="bar-group"><i style="height:58%"></i><i class="soft" style="height:22%"></i></div>
+              <div class="bar-group"><i class="empty"></i><i class="empty"></i></div>
+              <div class="bar-group"><i class="empty"></i><i class="empty"></i></div>
+            </div>
+            <div class="x-labels"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+          </div>
+        </div>
+
+        <div class="today-card">
+          <div class="card-top">
+            <div>
+              <div class="eyebrow muted">UP NEXT</div>
+              <h2>Today's game plan</h2>
+            </div>
+            <span class="date-badge">TUE<br><b>17</b></span>
+          </div>
+
+          <div class="task-list">
+            <label class="task">
+              <input type="checkbox">
+              <span class="checkmark"></span>
+              <span><b>Binary search patterns</b><small>Practice · 20 min</small></span>
+              <i class="task-tag tag-code">CODE</i>
+            </label>
+            <label class="task">
+              <input type="checkbox">
+              <span class="checkmark"></span>
+              <span><b>Tell me about yourself</b><small>Behavioral · 10 min</small></span>
+              <i class="task-tag tag-talk">SPEAK</i>
+            </label>
+            <label class="task done">
+              <input type="checkbox" checked>
+              <span class="checkmark"></span>
+              <span><b>Review yesterday's notes</b><small>Review · 5 min</small></span>
+              <i class="task-tag tag-done">DONE</i>
+            </label>
+          </div>
+
+          <a class="text-link task-link" href="pages/plan.html">Open full plan <span>→</span></a>
+        </div>
+      </section>
+
+      <section class="bottom-banner">
+        <div class="banner-symbol">✦</div>
+        <div>
+          <span class="eyebrow">A QUICK WIN FOR TODAY</span>
+          <h3>Consistency beats intensity.</h3>
+          <p>You've shown up 7 days in a row. Keep your streak alive with one focused rep.</p>
+        </div>
+        <button onclick="location.href='pages/practice.html'">Do a 5-min warm-up <span>→</span></button>
+        <div class="banner-orb orb1"></div>
+        <div class="banner-orb orb2"></div>
+      </section>
+
+      <footer>
+        UPDRAFT <span>·</span> YOUR INTERVIEW JOURNEY, IN MOTION
+        <span class="footer-right">Made for the work behind the win.</span>
+      </footer>
+    </div>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
