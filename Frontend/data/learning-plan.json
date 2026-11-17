@@ -1,0 +1,38 @@
+{
+  "title": "Software Engineer Interview Prep",
+  "durationWeeks": 4,
+  "weeks": [
+    {
+      "week": 1,
+      "focus": "Arrays, hash maps, and binary search",
+      "activities": [
+        "Review core patterns",
+        "Complete four practice problems"
+      ]
+    },
+    {
+      "week": 2,
+      "focus": "Trees, graphs, and system design foundations",
+      "activities": [
+        "Practice traversal problems",
+        "Estimate capacity for a simple service"
+      ]
+    },
+    {
+      "week": 3,
+      "focus": "Behavioral stories and communication",
+      "activities": [
+        "Draft five STAR stories",
+        "Practice explaining solutions aloud"
+      ]
+    },
+    {
+      "week": 4,
+      "focus": "Mock interviews and targeted review",
+      "activities": [
+        "Complete two mock interviews",
+        "Review your weakest topics"
+      ]
+    }
+  ]
+}
