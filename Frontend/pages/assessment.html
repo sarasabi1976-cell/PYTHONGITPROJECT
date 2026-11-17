@@ -9,69 +9,51 @@
 <body>
   <aside class="sidebar">
     <a class="brand" href="../index.html"><span class="brandmark">u.</span><span>updraft<span class="brand-dot">.</span></span></a>
-    <div class="side-label">YOUR WORKSPACE</div>
+    <div class="side-label">WORKSPACE</div>
     <nav>
-      <a class="nav-item" href="../index.html"><span>◫</span> Overview</a>
-      <a class="nav-item active" href="assessment.html"><span>◉</span> Skill assessment</a>
-      <a class="nav-item" href="plan.html"><span>▦</span> Prep plan</a>
-      <a class="nav-item" href="practice.html"><span>⌁</span> Practice arena</a>
-      <a class="nav-item" href="mock-interview.html"><span>◎</span> Mock interview</a>
-      <a class="nav-item" href="reports.html"><span>↗</span> Progress reports</a>
+      <a class="nav-item" href="../index.html">Overview</a>
+      <a class="nav-item active" href="assessment.html">Skill assessment</a>
+      <a class="nav-item" href="plan.html">Prep plan</a>
+      <a class="nav-item" href="practice.html">Practice arena</a>
+      <a class="nav-item" href="mock-interview.html">Mock interview</a>
+      <a class="nav-item" href="reports.html">Progress reports</a>
     </nav>
   </aside>
 
   <main class="main">
-    <header class="topbar">
-      <div class="breadcrumbs"><a href="../index.html">Workspace</a> <span>/</span> Skill assessment</div>
-      <div class="top-actions"><span class="today" id="today"></span><button class="avatar mini">AK</button></div>
-    </header>
-
+    <header class="topbar"><div class="breadcrumbs"><a href="../index.html">Workspace</a> <span>/</span> Skill assessment</div><span id="today"></span></header>
     <div class="content">
       <div class="page-head">
-        <div class="eyebrow">START WITH WHAT YOU KNOW</div>
-        <h1>Find your edge.</h1>
-        <p>A short, adaptive check-in turns your experience into a prep plan that fits you.</p>
+        <div class="eyebrow">PERSONALIZE YOUR PREPARATION</div>
+        <h1>Set your interview goals.</h1>
+        <p>Choose a role and select the areas you want to focus on.</p>
       </div>
 
-      <div class="page-grid">
-        <section class="panel">
-          <div class="eyebrow muted">01 / SET YOUR TARGET</div>
-          <h2>What role are you preparing for?</h2>
-          <div class="option-row">
-            <button class="choice selected">Software engineer</button>
-            <button class="choice">Data scientist</button>
-            <button class="choice">Product manager</button>
-            <button class="choice">UX designer</button>
+      <form class="panel" data-local-form>
+        <label class="field-label" for="role">What role are you preparing for?</label>
+        <input id="role" name="role" class="text-input" type="text" placeholder="Enter a role">
+
+        <label class="field-label" for="experience">What experience level are you targeting?</label>
+        <select id="experience" name="experience" class="text-input">
+          <option value="">Choose an experience level</option>
+          <option>Entry level</option><option>Mid-level</option>
+          <option>Senior</option><option>Staff or leadership</option>
+        </select>
+
+        <fieldset class="field-group">
+          <legend class="field-label">Which areas would you like to work on?</legend>
+          <div class="check-grid">
+            <label><input type="checkbox" name="focus" value="Algorithms"> Algorithms</label>
+            <label><input type="checkbox" name="focus" value="System design"> System design</label>
+            <label><input type="checkbox" name="focus" value="Behavioral"> Behavioral interviews</label>
+            <label><input type="checkbox" name="focus" value="Communication"> Communication</label>
+            <label><input type="checkbox" name="focus" value="Role knowledge"> Role knowledge</label>
           </div>
+        </fieldset>
 
-          <h2 style="margin-top:24px">Where are you interviewing?</h2>
-          <div class="option-row">
-            <button class="choice">Early stage</button>
-            <button class="choice selected">Mid-level</button>
-            <button class="choice">Senior / staff</button>
-          </div>
-
-          <h2 style="margin-top:24px">What do you want to sharpen?</h2>
-          <div class="option-row">
-            <button class="chip selected">Algorithms</button>
-            <button class="chip">System design</button>
-            <button class="chip">Behavioral</button>
-            <button class="chip">Communication</button>
-            <button class="chip">Role fundamentals</button>
-          </div>
-
-          <button class="action" style="margin-top:20px" onclick="location.href='practice.html'">Start 3-minute skill scan →</button>
-        </section>
-
-        <aside class="panel">
-          <div class="eyebrow muted">HOW IT WORKS</div>
-          <h2>A clearer starting point</h2>
-          <div class="plan-row"><span class="topic-icon">◉</span><div><b>Quick skill scan</b><small>Adaptive questions across core topics</small></div></div>
-          <div class="plan-row"><span class="topic-icon">⌁</span><div><b>Confidence mapping</b><small>We combine results with your self-rating</small></div></div>
-          <div class="plan-row"><span class="topic-icon">✦</span><div><b>Personalized next steps</b><small>Your plan prioritizes high-impact gaps</small></div></div>
-          <div class="feedback">Your answers stay in your workspace. You can retake the assessment as your skills grow.</div>
-        </aside>
-      </div>
+        <button class="action" type="submit">Save preferences</button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
     </div>
   </main>
   <script src="../js/app.js"></script>

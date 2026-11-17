@@ -9,71 +9,51 @@
 <body>
   <aside class="sidebar">
     <a class="brand" href="../index.html"><span class="brandmark">u.</span><span>updraft<span class="brand-dot">.</span></span></a>
-    <div class="side-label">YOUR WORKSPACE</div>
+    <div class="side-label">WORKSPACE</div>
     <nav>
-      <a class="nav-item" href="../index.html"><span>◫</span> Overview</a>
-      <a class="nav-item" href="assessment.html"><span>◉</span> Skill assessment</a>
-      <a class="nav-item" href="plan.html"><span>▦</span> Prep plan</a>
-      <a class="nav-item" href="practice.html"><span>⌁</span> Practice arena</a>
-      <a class="nav-item active" href="mock-interview.html"><span>◎</span> Mock interview</a>
-      <a class="nav-item" href="reports.html"><span>↗</span> Progress reports</a>
+      <a class="nav-item" href="../index.html">Overview</a>
+      <a class="nav-item" href="assessment.html">Skill assessment</a>
+      <a class="nav-item" href="plan.html">Prep plan</a>
+      <a class="nav-item" href="practice.html">Practice arena</a>
+      <a class="nav-item active" href="mock-interview.html">Mock interview</a>
+      <a class="nav-item" href="reports.html">Progress reports</a>
     </nav>
   </aside>
 
   <main class="main">
-    <header class="topbar">
-      <div class="breadcrumbs"><a href="../index.html">Workspace</a> <span>/</span> Mock interview</div>
-      <div class="top-actions"><span class="today" id="today"></span><button class="avatar mini">AK</button></div>
-    </header>
-
+    <header class="topbar"><div class="breadcrumbs"><a href="../index.html">Workspace</a> <span>/</span> Mock interview</div><span id="today"></span></header>
     <div class="content">
       <div class="page-head">
-        <div class="eyebrow">PRACTICE THE ROOM, NOT JUST THE QUESTION</div>
-        <h1>Take the hot seat.</h1>
-        <p>Pick a format, set the pressure, and get a clear debrief after each round.</p>
+        <div class="eyebrow">INTERVIEW PRACTICE</div>
+        <h1>Set up a mock interview.</h1>
+        <p>Choose the format and preferences for your practice session.</p>
       </div>
 
-      <div class="page-grid">
-        <section class="panel">
-          <div class="eyebrow muted">BUILD YOUR SESSION</div>
-          <h2>Choose your interview loop</h2>
-          <div class="option-row">
-            <button class="choice selected">Coding</button>
-            <button class="choice">System design</button>
-            <button class="choice">Behavioral</button>
-            <button class="choice">Mixed loop</button>
-          </div>
+      <form class="panel" data-local-form>
+        <label class="field-label" for="format">Interview format</label>
+        <select id="format" name="format" class="text-input">
+          <option value="">Choose a format</option>
+          <option>Coding</option><option>System design</option>
+          <option>Behavioral</option><option>Mixed interview</option>
+        </select>
 
-          <h2 style="margin-top:24px">Pressure level</h2>
-          <div class="option-row">
-            <button class="choice">Warm-up</button>
-            <button class="choice selected">Realistic</button>
-            <button class="choice">High stakes</button>
-          </div>
+        <label class="field-label" for="difficulty">Practice intensity</label>
+        <select id="difficulty" name="difficulty" class="text-input">
+          <option value="">Choose an intensity</option>
+          <option>Warm-up</option><option>Standard practice</option><option>High pressure</option>
+        </select>
 
-          <h2 style="margin-top:24px">Interviewer style</h2>
-          <div class="option-row">
-            <button class="choice selected">Supportive coach</button>
-            <button class="choice">Quiet observer</button>
-            <button class="choice">Socratic challenger</button>
-          </div>
+        <label class="field-label" for="style">Interviewer style</label>
+        <select id="style" name="style" class="text-input">
+          <option value="">Choose a style</option>
+          <option>Supportive</option><option>Observational</option><option>Challenging</option>
+        </select>
 
-          <div class="feedback">Your debrief tracks clarity, problem-solving, communication, and time management. Speak your reasoning as you go.</div>
-          <button class="action" style="margin-top:15px" data-toast="Mock session is ready. Connect a voice or coding partner to begin.">Start mock interview ↗</button>
-        </section>
-
-        <aside class="panel">
-          <div class="eyebrow muted">SESSION PREVIEW</div>
-          <h2>45 minute mixed loop</h2>
-          <div class="plan-row"><span class="topic-icon">01</span><div><b>Warm introduction</b><small>Behavioral · 5 minutes</small></div></div>
-          <div class="plan-row"><span class="topic-icon">02</span><div><b>Core challenge</b><small>Algorithms · 25 minutes</small></div></div>
-          <div class="plan-row"><span class="topic-icon">03</span><div><b>Reflection &amp; feedback</b><small>Personal debrief · 10 minutes</small></div></div>
-          <div class="plan-row"><span class="topic-icon">04</span><div><b>One thing to carry forward</b><small>Next-step recommendation · 5 minutes</small></div></div>
-        </aside>
-      </div>
+        <button class="action" type="submit">Save session preferences</button>
+        <p class="form-message" aria-live="polite"></p>
+      </form>
     </div>
   </main>
-
   <script src="../js/app.js"></script>
 </body>
 </html>
