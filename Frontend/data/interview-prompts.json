@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "category": "Behavioral",
+    "prompt": "Tell me about a time you resolved a disagreement on a team.",
+    "followUps": [
+      "What was your role?",
+      "What actions did you take?",
+      "What was the outcome?"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Software engineering",
+    "prompt": "Describe a technical decision you made and the trade-offs you considered.",
+    "followUps": [
+      "What alternatives did you consider?",
+      "How did you measure success?"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Behavioral",
+    "prompt": "Tell me about a challenging project you completed.",
+    "followUps": [
+      "What made it challenging?",
+      "How did you handle the challenge?",
+      "What did you learn?"
+    ]
+  }
+]
