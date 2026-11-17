@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "question": "Which data structure provides average O(1) lookup by key?",
+    "options": ["Array", "Hash map", "Linked list", "Stack"],
+    "answer": "Hash map",
+    "topic": "Data structures"
+  },
+  {
+    "id": 2,
+    "question": "What is the time complexity of binary search on a sorted array?",
+    "options": ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
+    "answer": "O(log n)",
+    "topic": "Algorithms"
+  },
+  {
+    "id": 3,
+    "question": "Which data structure follows the First In, First Out (FIFO) principle?",
+    "options": ["Stack", "Queue", "Tree", "Graph"],
+    "answer": "Queue",
+    "topic": "Data structures"
+  }
+]
