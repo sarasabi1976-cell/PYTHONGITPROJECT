@@ -29,3 +29,40 @@ def find_matching_roles(student_skills, careers):
         reverse=True
     )
     return matches
+    
+    def calculate_skill_gaps(student_skills, career):
+    """Return the career skill targets the student has not met."""
+    gaps = []
+
+    for skill, required_level in career["skills"].items():
+        student_level = student_skills.get(skill, 0)
+        gap = required_level - student_level
+
+        if gap > 0:
+            gaps.append({
+                "skill": skill,
+                "current": student_level,
+                "required": required_level,
+                "gap": gap
+            })
+
+    gaps.sort(key=lambda item: item["gap"], reverse=True)
+    return gaps
+
+
+def order_study_tasks(skill_gaps):
+    """Make a study list with the biggest skill gap first."""
+    tasks = []
+
+    for item in skill_gaps:
+        skill_name = item["skill"].replace("_", " ")
+        tasks.append({
+            "skill": skill_name,
+            "priority": item["gap"],
+            "task": (
+                f"Study {skill_name}: aim to improve from "
+                f"{item['current']} to {item['required']}."
+            )
+        })
+
+    return tasks
