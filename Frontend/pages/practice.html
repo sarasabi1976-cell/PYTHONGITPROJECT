@@ -11,9 +11,6 @@
     .practice-status { min-height: 18px; margin: 10px 0; color: #75806e; font-size: 11px; }
     .practice-status:empty { display: none; }
     .timer { margin: 16px 0; }
-    .timer-controls { flex-wrap: wrap; }
-    .timer-controls button[aria-pressed="true"] { border-color: #9fc377; background: #f3f8eb; }
-    .timer-controls button:disabled { cursor: not-allowed; opacity: .55; }
     .prompt-actions { display: flex; justify-content: center; gap: 8px; margin-top: 12px; }
     #warmup-prompt { margin: 18px 0; }
     .review-button { margin-left: auto; }
@@ -35,10 +32,7 @@
   <main class="main">
     <header class="topbar">
       <div class="breadcrumbs"><a href="../index.html">Workspace</a> <span>/</span> Practice arena</div>
-      <div class="top-actions">
-        <span class="today" id="today"></span>
-        <button class="avatar mini" type="button" aria-label="User profile">U</button>
-      </div>
+      <div class="top-actions"><span class="today" id="today"></span><button class="avatar mini" type="button" aria-label="User profile">U</button></div>
     </header>
 
     <div class="content">
