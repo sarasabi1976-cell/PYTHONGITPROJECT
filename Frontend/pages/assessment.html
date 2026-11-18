@@ -3,74 +3,118 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skill assessment — Updraft</title>
+  <title>Career assessment — Updraft</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
-  <style>
-    .assessment-fieldset { border: 0; min-width: 0; margin: 0 0 24px; padding: 0; }
-    .assessment-fieldset legend { margin: 0 0 12px; padding: 0; font-size: 17px; font-weight: 600; }
-    .assessment-fieldset .panel-copy, .form-help { color: var(--muted); font-size: 11px; }
-    .form-help { display: block; margin: 8px 0 0 5px; }
-    .form-status { min-height: 16px; margin: 12px 0 0; color: #75806e; font-size: 11px; }
-    .action:disabled { cursor: not-allowed; opacity: .55; }
-  </style>
+  <link rel="stylesheet" href="../css/career.css">
 </head>
 <body>
   <aside class="sidebar">
-    <a class="brand" href="../index.html"><span class="brandmark">u.</span><span>updraft<span class="brand-dot">.</span></span></a>
+    <a class="brand" href="../index.html">
+      <span class="brandmark">u.</span>
+      <span>updraft<span class="brand-dot">.</span></span>
+    </a>
     <div class="side-label">YOUR WORKSPACE</div>
     <nav aria-label="Main navigation">
       <a class="nav-item" href="../index.html"><span>◫</span> Overview</a>
       <a class="nav-item active" href="assessment.html"><span>◉</span> Skill assessment</a>
+      <a class="nav-item" href="career-results.html"><span>✦</span> Career matches</a>
       <a class="nav-item" href="plan.html"><span>▦</span> Prep plan</a>
       <a class="nav-item" href="practice.html"><span>⌁</span> Practice arena</a>
       <a class="nav-item" href="reports.html"><span>↗</span> Progress reports</a>
     </nav>
   </aside>
+
   <main class="main">
     <header class="topbar">
-      <div class="breadcrumbs"><a href="../index.html">Workspace</a> <span>/</span> Skill assessment</div>
-      <div class="top-actions"><span class="today" id="today"></span><button class="avatar mini" type="button" aria-label="User profile">U</button></div>
+      <div class="breadcrumbs">
+        <a href="../index.html">Workspace</a>
+        <span>/</span>
+        Career assessment
+      </div>
+      <div class="top-actions">
+        <span class="today" id="today"></span>
+        <span class="avatar mini" aria-label="User">U</span>
+      </div>
     </header>
+
     <div class="content">
       <div class="page-head">
         <div class="eyebrow">START WITH WHAT YOU KNOW</div>
-        <h1>Find your edge.</h1>
-        <p>A short, adaptive check-in turns your experience into a prep plan that fits you.</p>
+        <h1>Find your career direction.</h1>
+        <p>Tell us about your education and skills to see career paths and next steps.</p>
       </div>
-      <div class="page-grid">
-        <section class="panel" aria-labelledby="target-heading">
-          <div class="eyebrow muted">01 / SET YOUR TARGET</div>
-          <form id="assessment-form" novalidate>
-            <fieldset class="assessment-fieldset">
-              <legend id="target-heading">What role are you preparing for?</legend>
-              <div class="option-row" id="role-options" aria-live="polite"><span class="panel-copy">Loading roles…</span></div>
+
+      <div class="page-grid career-page-grid">
+        <section class="panel" aria-labelledby="assessment-heading">
+          <div class="eyebrow muted">YOUR PROFILE</div>
+          <h2 id="assessment-heading">Education and skills</h2>
+
+          <form id="assessment-form">
+            <fieldset class="career-fieldset">
+              <legend>Your education</legend>
+
+              <label class="career-label" for="degree">Degree</label>
+              <select id="degree" name="degreeId" required>
+                <option value="">Loading degrees…</option>
+              </select>
+
+              <label class="career-label" for="specialization">Specialization</label>
+              <select id="specialization" name="specializationId" required disabled>
+                <option value="">Choose a degree first</option>
+              </select>
+
+              <label class="career-label" for="study-year">Current year</label>
+              <select id="study-year" name="studyYear" required>
+                <option value="">Choose your year</option>
+                <option value="1">Year 1</option>
+                <option value="2">Year 2</option>
+                <option value="3">Year 3</option>
+                <option value="4">Year 4</option>
+                <option value="graduate">Graduated</option>
+              </select>
             </fieldset>
-            <fieldset class="assessment-fieldset">
-              <legend>Where are you interviewing?</legend>
-              <div class="option-row" id="level-options" aria-live="polite"><span class="panel-copy">Loading experience levels…</span></div>
+
+            <fieldset class="career-fieldset">
+              <legend>Rate your skills</legend>
+              <p class="panel-copy">Rate each skill from 1 (beginner) to 5 (confident).</p>
+              <div id="skill-ratings" class="skill-ratings" aria-live="polite">
+                <p class="panel-copy">Loading skill choices…</p>
+              </div>
             </fieldset>
-            <fieldset class="assessment-fieldset">
-              <legend>What do you want to sharpen?</legend>
-              <div class="option-row" id="skill-options" aria-live="polite"><span class="panel-copy">Loading skill areas…</span></div>
-              <small class="form-help">Choose one or more areas.</small>
-            </fieldset>
-            <p class="form-status" id="assessment-status" role="status" aria-live="polite"></p>
-            <button class="action" id="start-assessment" type="submit" style="margin-top:20px" disabled>Start 3-minute skill scan →</button>
+
+            <p id="assessment-status" class="career-status" role="status" aria-live="polite"></p>
+
+            <button class="action" id="submit-assessment" type="submit" disabled>
+              Find career matches →
+            </button>
           </form>
         </section>
+
         <aside class="panel">
-          <div class="eyebrow muted">HOW IT WORKS</div>
-          <h2>A clearer starting point</h2>
-          <div class="plan-row"><span class="topic-icon">◉</span><div><b>Quick skill scan</b><small>Adaptive questions across core topics</small></div></div>
-          <div class="plan-row"><span class="topic-icon">⌁</span><div><b>Confidence mapping</b><small>We combine results with your self-rating</small></div></div>
-          <div class="plan-row"><span class="topic-icon">✦</span><div><b>Personalized next steps</b><small>Your plan prioritizes high-impact gaps</small></div></div>
-          <div class="feedback">Your answers stay in your workspace. You can retake the assessment as your skills grow.</div>
+          <div class="eyebrow muted">WHAT YOU’LL GET</div>
+          <h2>Useful next steps</h2>
+          <div class="plan-row">
+            <span class="topic-icon">✦</span>
+            <div><b>Career matches</b><small>Roles related to your education and skills</small></div>
+          </div>
+          <div class="plan-row">
+            <span class="topic-icon">↗</span>
+            <div><b>Skill gaps</b><small>Skills to build for each recommended role</small></div>
+          </div>
+          <div class="plan-row">
+            <span class="topic-icon">▦</span>
+            <div><b>Suggested study order</b><small>Next steps to guide your preparation</small></div>
+          </div>
+          <div class="feedback">
+            Your choices are used to personalize your recommendations.
+          </div>
         </aside>
       </div>
     </div>
   </main>
+
   <script src="../js/app.js"></script>
   <script src="../js/assessment.js"></script>
 </body>

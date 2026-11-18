@@ -1,156 +1,162 @@
-// GET /api/assessment/options
-// { roles:[{id,label}], levels:[{id,label}], skills:[{id,label}] }
-// POST /api/assessment/start
-// { roleId, levelId, skillIds:[...] } -> { nextUrl?: "practice.html" }
+(() => {
+  const OPTIONS_URL = '/api/career/options';
+  const SUBMIT_URL = '/api/career/assessment';
 
-const ASSESSMENT_OPTIONS_ENDPOINT = '/api/assessment/options';
-const ASSESSMENT_START_ENDPOINT = '/api/assessment/start';
+  const form = document.getElementById('assessment-form');
+  const degreeSelect = document.getElementById('degree');
+  const specializationSelect = document.getElementById('specialization');
+  const skillRatings = document.getElementById('skill-ratings');
+  const statusMessage = document.getElementById('assessment-status');
+  const submitButton = document.getElementById('submit-assessment');
 
-const assessmentSelection = { roleId: null, levelId: null, skillIds: new Set() };
-const assessmentForm = document.getElementById('assessment-form');
-const assessmentStatus = document.getElementById('assessment-status');
-const startButton = document.getElementById('start-assessment');
+  if (!form || !degreeSelect || !specializationSelect || !skillRatings) return;
 
-function optionId(option) {
-  return String(option.id ?? option.value ?? '');
-}
+  let degrees = [];
 
-function optionLabel(option) {
-  return String(option.label ?? option.name ?? option.title ?? option.id ?? '');
-}
-
-function renderOptions(containerId, options, group, multi = false) {
-  const container = document.getElementById(containerId);
-  container.replaceChildren();
-
-  if (!Array.isArray(options) || options.length === 0) {
-    const empty = document.createElement('span');
-    empty.className = 'panel-copy';
-    empty.textContent = 'No options are available right now.';
-    container.append(empty);
-    return;
+  function makeOption(label, value = '') {
+    return new Option(label, value);
   }
 
-  options.forEach(option => {
-    const id = optionId(option);
-    const label = optionLabel(option);
-    if (!id || !label) return;
+  function fillSelect(select, items, placeholder) {
+    select.replaceChildren(makeOption(placeholder));
 
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = group === 'skills' ? 'chip' : 'choice';
-    button.textContent = label;
-    button.dataset.group = group;
-    button.dataset.optionId = id;
-    button.setAttribute('aria-pressed', 'false');
-    button.setAttribute('aria-label', label);
-    if (multi) button.dataset.multi = 'true';
-    container.append(button);
-  });
-}
+    items.forEach(item => {
+      const id = String(item.id ?? item.value ?? '');
+      const label = String(item.label ?? item.name ?? '');
 
-function updateSubmitState() {
-  startButton.disabled = !(assessmentSelection.roleId && assessmentSelection.levelId && assessmentSelection.skillIds.size);
-}
-
-function setSelection(button) {
-  const { group, optionId: id } = button.dataset;
-  if (group === 'skills') {
-    if (assessmentSelection.skillIds.has(id)) assessmentSelection.skillIds.delete(id);
-    else assessmentSelection.skillIds.add(id);
-    button.classList.toggle('selected', assessmentSelection.skillIds.has(id));
-  } else {
-    const container = button.parentElement;
-    container.querySelectorAll('button[data-group]').forEach(option => {
-      option.classList.remove('selected');
-      option.setAttribute('aria-pressed', 'false');
+      if (id && label) {
+        select.add(makeOption(label, id));
+      }
     });
-    if (group === 'roles') assessmentSelection.roleId = id;
-    if (group === 'levels') assessmentSelection.levelId = id;
-    button.classList.add('selected');
   }
-  button.setAttribute('aria-pressed', button.classList.contains('selected') ? 'true' : 'false');
-  assessmentStatus.textContent = '';
-  updateSubmitState();
-}
 
-async function loadAssessmentOptions() {
-  assessmentStatus.textContent = 'Loading assessment choices…';
-  startButton.disabled = true;
-  try {
-    const response = await fetch(ASSESSMENT_OPTIONS_ENDPOINT, {
-      credentials: 'same-origin',
-      headers: { Accept: 'application/json' }
-    });
-    if (!response.ok) throw new Error(`Options request failed (${response.status})`);
-    const options = await response.json();
-    renderOptions('role-options', options.roles, 'roles');
-    renderOptions('level-options', options.levels, 'levels');
-    renderOptions('skill-options', options.skills, 'skills', true);
-    assessmentStatus.textContent = 'Choose a role, experience level, and at least one skill area.';
-  } catch (error) {
-    console.error('Unable to load assessment options:', error);
-    ['role-options', 'level-options', 'skill-options'].forEach(id => {
-      const container = document.getElementById(id);
-      container.replaceChildren();
-      const message = document.createElement('span');
+  function renderSkills(skills) {
+    skillRatings.replaceChildren();
+
+    if (!skills.length) {
+      const message = document.createElement('p');
       message.className = 'panel-copy';
-      message.textContent = 'Options could not be loaded.';
-      container.append(message);
-    });
-    assessmentStatus.textContent = 'Connect the assessment options endpoint, then try again.';
-    const retry = document.createElement('button');
-    retry.type = 'button';
-    retry.className = 'choice';
-    retry.textContent = 'Retry loading options';
-    retry.addEventListener('click', loadAssessmentOptions);
-    document.getElementById('skill-options').append(retry);
-  }
-}
-
-document.addEventListener('click', event => {
-  const option = event.target.closest('#role-options button[data-group], #level-options button[data-group], #skill-options button[data-group]');
-  if (option) setSelection(option);
-});
-
-assessmentForm.addEventListener('submit', async event => {
-  event.preventDefault();
-  updateSubmitState();
-  if (startButton.disabled) {
-    assessmentStatus.textContent = 'Select a role, experience level, and at least one skill area to continue.';
-    return;
-  }
-
-  startButton.disabled = true;
-  assessmentStatus.textContent = 'Starting your skill scan…';
-  try {
-    const response = await fetch(ASSESSMENT_START_ENDPOINT, {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-      body: JSON.stringify({
-        roleId: assessmentSelection.roleId,
-        levelId: assessmentSelection.levelId,
-        skillIds: [...assessmentSelection.skillIds]
-      })
-    });
-    if (!response.ok) throw new Error(`Assessment start failed (${response.status})`);
-    const result = await response.json().catch(() => ({}));
-    let nextUrl = new URL('practice.html', window.location.href);
-    if (typeof result.nextUrl === 'string') {
-      const candidate = new URL(result.nextUrl, window.location.href);
-      if (candidate.origin === window.location.origin) nextUrl = candidate;
+      message.textContent = 'No skill choices are available yet.';
+      skillRatings.append(message);
+      return;
     }
-    window.location.href = nextUrl.href;
-  } catch (error) {
-    console.error('Unable to start assessment:', error);
-    assessmentStatus.textContent = 'Your selections are ready, but the backend could not start the assessment. Please try again.';
-    startButton.disabled = false;
-  }
-});
 
-document.addEventListener('DOMContentLoaded', () => {
-  const today = document.getElementById('today');
-  if (today) today.textContent = new Intl.DateTimeFormat(undefined, { weekday: 'short', month: 'short', day: 'numeric' }).format(new Date());
-  loadAssessmentOptions();
-});
+    skills.forEach(skill => {
+      const id = String(skill.id ?? '');
+      const label = String(skill.label ?? skill.name ?? '');
+
+      if (!id || !label) return;
+
+      const row = document.createElement('div');
+      row.className = 'skill-rating-row';
+
+      const name = document.createElement('label');
+      name.htmlFor = `skill-${id}`;
+      name.textContent = label;
+
+      const select = document.createElement('select');
+      select.id = `skill-${id}`;
+      select.name = `skill-${id}`;
+      select.dataset.skillId = id;
+      select.required = true;
+      select.setAttribute('aria-label', `Rate your ${label} skill`);
+      select.add(makeOption('Choose rating'));
+
+      for (let score = 1; score <= 5; score += 1) {
+        select.add(makeOption(String(score), String(score)));
+      }
+
+      row.append(name, select);
+      skillRatings.append(row);
+    });
+  }
+
+  degreeSelect.addEventListener('change', () => {
+    const degree = degrees.find(item => String(item.id) === degreeSelect.value);
+    const specializations = degree?.specializations || [];
+
+    fillSelect(
+      specializationSelect,
+      specializations,
+      degree ? 'Choose a specialization' : 'Choose a degree first'
+    );
+    specializationSelect.disabled = !degree;
+  });
+
+  async function loadOptions() {
+    statusMessage.textContent = 'Loading education and skill choices…';
+    submitButton.disabled = true;
+
+    try {
+      const response = await fetch(OPTIONS_URL, {
+        credentials: 'same-origin',
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Options request failed (${response.status})`);
+      }
+
+      const data = await response.json();
+      degrees = Array.isArray(data.degrees) ? data.degrees : [];
+
+      fillSelect(degreeSelect, degrees, 'Choose a degree');
+      renderSkills(Array.isArray(data.skills) ? data.skills : []);
+
+      statusMessage.textContent = 'Complete each field, then submit your assessment.';
+      submitButton.disabled = false;
+    } catch (error) {
+      console.error('Could not load career assessment options:', error);
+      statusMessage.textContent =
+        'Could not load choices. Check the backend connection and refresh the page.';
+      degreeSelect.replaceChildren(makeOption('Options unavailable'));
+      skillRatings.textContent = 'Skill choices are currently unavailable.';
+    }
+  }
+
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    if (!form.reportValidity()) return;
+
+    const skills = {};
+    skillRatings.querySelectorAll('select[data-skill-id]').forEach(select => {
+      skills[select.dataset.skillId] = Number(select.value);
+    });
+
+    const payload = {
+      degreeId: degreeSelect.value,
+      specializationId: specializationSelect.value,
+      studyYear: document.getElementById('study-year').value,
+      skills
+    };
+
+    submitButton.disabled = true;
+    statusMessage.textContent = 'Saving your answers and finding matches…';
+
+    try {
+      const response = await fetch(SUBMIT_URL, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Assessment request failed (${response.status})`);
+      }
+
+      window.location.href = 'career-results.html';
+    } catch (error) {
+      console.error('Could not submit career assessment:', error);
+      statusMessage.textContent =
+        'Your answers could not be saved. Please try again.';
+      submitButton.disabled = false;
+    }
+  });
+
+  loadOptions();
+})();
