@@ -1,1 +1,52 @@
-
+{
+  "careers": [
+    {
+      "name": "Data Scientist",
+      "skills": {
+        "programming": 4,
+        "math_statistics": 5,
+        "data_analysis": 5,
+        "problem_solving": 4,
+        "machine_learning": 4,
+        "cybersecurity_networking": 1,
+        "communication": 4
+      }
+    },
+    {
+      "name": "Software Developer",
+      "skills": {
+        "programming": 5,
+        "math_statistics": 3,
+        "data_analysis": 2,
+        "problem_solving": 5,
+        "machine_learning": 1,
+        "cybersecurity_networking": 2,
+        "communication": 4
+      }
+    },
+    {
+      "name": "Cybersecurity Analyst",
+      "skills": {
+        "programming": 3,
+        "math_statistics": 3,
+        "data_analysis": 3,
+        "problem_solving": 5,
+        "machine_learning": 1,
+        "cybersecurity_networking": 5,
+        "communication": 4
+      }
+    },
+    {
+      "name": "AI/ML Engineer",
+      "skills": {
+        "programming": 5,
+        "math_statistics": 5,
+        "data_analysis": 4,
+        "problem_solving": 5,
+        "machine_learning": 5,
+        "cybersecurity_networking": 2,
+        "communication": 3
+      }
+    }
+  ]
+}
